@@ -16,6 +16,7 @@ interface AuthContextType {
   updatePassword: (newPassword: string) => Promise<{ success: boolean; error?: string }>;
   updateProfile: (fullName: string, phoneNumber?: string) => Promise<{ success: boolean; error?: string }>;
   refreshProfile: () => Promise<void>;
+  resendVerificationEmail: (email: string) => Promise<{ success: boolean; error?: string }>;
   // Demo mode toggle when Supabase is not configured yet
   isDemoMode: boolean;
   setDemoUser: (role: 'customer' | 'admin' | null) => void;
@@ -325,6 +326,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const resendVerificationEmail = async (emailToResend: string) => {
+    if (!isConfigured) return { success: true };
+    try {
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email: emailToResend.trim(),
+        options: {
+          emailRedirectTo: `${window.location.origin}/login`,
+        },
+      });
+
+      if (error) {
+        return { success: false, error: error.message };
+      }
+      return { success: true };
+    } catch (err: unknown) {
+      const errorMsg = err instanceof Error ? err.message : 'Failed to resend confirmation email';
+      return { success: false, error: errorMsg };
+    }
+  };
+
   const setDemoUser = (role: 'customer' | 'admin' | null) => {
     setDemoRole(role);
     if (role) {
@@ -363,6 +385,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         updatePassword,
         updateProfile,
         refreshProfile,
+        resendVerificationEmail,
         isDemoMode: !isConfigured,
         setDemoUser,
       }}

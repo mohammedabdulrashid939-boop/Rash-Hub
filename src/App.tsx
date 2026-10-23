@@ -31,6 +31,7 @@ function MainApp() {
 
   // Last completed order for confirmation page
   const [confirmedOrder, setConfirmedOrder] = useState<Order | null>(null);
+  const [emailVerifiedBanner, setEmailVerifiedBanner] = useState<boolean>(false);
 
   // Load published catalog from Supabase
   const loadProducts = async () => {
@@ -52,6 +53,13 @@ function MainApp() {
 
       if (hash && hash.includes('type=recovery')) {
         setCurrentPage('reset-password');
+        return;
+      }
+
+      if (hash && (hash.includes('type=signup') || hash.includes('type=email_change'))) {
+        setEmailVerifiedBanner(true);
+        setCurrentPage('account');
+        window.history.replaceState({}, '', '/account');
         return;
       }
 
@@ -238,6 +246,21 @@ function MainApp() {
         onNavigate={handleNavigate}
         onSearchSubmit={(q) => handleNavigate('shop', { q })}
       />
+
+      {/* Email Verified Banner Notification */}
+      {emailVerifiedBanner && (
+        <div className="bg-[#00E676] text-black px-4 py-2.5 text-xs font-bold flex items-center justify-between shadow-lg">
+          <div className="max-w-7xl mx-auto flex items-center gap-2">
+            <span>✓ Email confirmed successfully! Your Rash Hub Store account is active and logged in.</span>
+          </div>
+          <button
+            onClick={() => setEmailVerifiedBanner(false)}
+            className="text-black/70 hover:text-black font-black px-2 text-sm"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       {/* Main Page Body */}
       <main className="flex-1">{renderPage()}</main>

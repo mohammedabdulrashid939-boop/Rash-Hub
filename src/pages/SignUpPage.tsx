@@ -18,7 +18,7 @@ interface SignUpPageProps {
 }
 
 export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
-  const { signUpWithEmail } = useAuth();
+  const { signUpWithEmail, resendVerificationEmail } = useAuth();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -81,7 +81,7 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
 
           <div>
             <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#00E676]/20 text-[#00E676] uppercase tracking-wider">
-              Verification Link Sent
+              Verification Required
             </span>
             <h2 className="text-xl sm:text-2xl font-black text-white mt-3 uppercase tracking-tight">
               CHECK YOUR EMAIL
@@ -101,13 +101,44 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate }) => {
             </ul>
           </div>
 
-          <div className="pt-2">
+          {/* Quick Resend Action */}
+          <div className="space-y-2 pt-2">
+            <button
+              onClick={async () => {
+                const res = await resendVerificationEmail(email);
+                if (res.success) {
+                  alert(`Confirmation email resent to ${email}! Please check your spam folder too.`);
+                } else {
+                  alert(res.error || 'Failed to resend confirmation email.');
+                }
+              }}
+              className="w-full py-2.5 rounded-xl border border-[#00E676]/40 text-[#00E676] font-bold text-xs uppercase hover:bg-[#00E676]/10 transition"
+            >
+              Resend Confirmation Email
+            </button>
+
             <button
               onClick={() => onNavigate('login')}
-              className="w-full py-3 rounded-xl bg-[#00E676] text-black font-extrabold text-xs uppercase tracking-wider hover:bg-[#00FF7F] transition"
+              className="w-full py-3 rounded-xl bg-[#00E676] text-black font-extrabold text-xs uppercase tracking-wider hover:bg-[#00FF7F] transition shadow-md shadow-[#00E676]/20"
             >
               Go to Login Page
             </button>
+          </div>
+
+          {/* Supabase Admin Fast Confirmation Tip */}
+          <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] text-left space-y-1.5">
+            <p className="font-bold text-white flex items-center gap-1.5">
+              <span>⚡ Didn't receive the email? (Supabase Email Tip)</span>
+            </p>
+            <p className="text-amber-300/90 leading-relaxed">
+              Supabase's built-in email service is limited to 3-4 emails/hr and often gets delayed by Gmail spam filters.
+            </p>
+            <p className="text-gray-300">
+              <strong>Instant Fix 1:</strong> In Supabase Dashboard → <strong>Authentication</strong> → <strong>Providers</strong> → <strong>Email</strong>, turn OFF <em>"Confirm email"</em>. Users can then register & log in instantly!
+            </p>
+            <p className="text-gray-300">
+              <strong>Instant Fix 2:</strong> In Supabase Dashboard → <strong>Authentication</strong> → <strong>Users</strong>, click <strong>...</strong> next to your email and select <em>"Confirm User"</em>.
+            </p>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ interface LoginPageProps {
 }
 
 export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess }) => {
-  const { signInWithEmail, isDemoMode, setDemoUser } = useAuth();
+  const { signInWithEmail, resendVerificationEmail, isDemoMode, setDemoUser } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -60,9 +60,44 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
         </div>
 
         {error && (
-          <div className="p-3.5 rounded-xl bg-red-950/60 border border-red-800 text-red-300 text-xs flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>{error}</span>
+          <div className="p-3.5 rounded-xl bg-red-950/60 border border-red-800 text-red-300 text-xs space-y-2">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+              <span>{error}</span>
+            </div>
+
+            {error.toLowerCase().includes('confirm') && (
+              <div className="pt-2 border-t border-red-800/60 space-y-2">
+                <button
+                  type="button"
+                  onClick={async () => {
+                    if (!email.trim()) {
+                      alert('Please enter your email address above first.');
+                      return;
+                    }
+                    const res = await resendVerificationEmail(email.trim());
+                    if (res.success) {
+                      alert(`Verification email resent to ${email}! Check your inbox and spam folder.`);
+                    } else {
+                      alert(res.error || 'Failed to resend confirmation email.');
+                    }
+                  }}
+                  className="w-full py-1.5 rounded-lg bg-[#00E676]/20 border border-[#00E676]/40 text-[#00E676] font-bold text-[11px] hover:bg-[#00E676]/30 transition"
+                >
+                  Resend Confirmation Email to {email || 'Your Email'}
+                </button>
+
+                <div className="p-2.5 rounded-lg bg-black/40 text-[10px] text-gray-300 space-y-1">
+                  <p className="font-bold text-white">Supabase Admin Solution:</p>
+                  <p>
+                    1. In Supabase Dashboard → <strong>Authentication</strong> → <strong>Providers</strong> → <strong>Email</strong>, turn OFF <em>"Confirm email"</em> to allow instant login.
+                  </p>
+                  <p>
+                    2. Or in <strong>Authentication</strong> → <strong>Users</strong>, click <strong>...</strong> next to your email and select <em>"Confirm User"</em>.
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
