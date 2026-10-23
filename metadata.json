@@ -1,0 +1,8 @@
+{
+  "name": "Rash Hub Store",
+  "description": "Rash Hub Store — Football jerseys for every fan. Shop quality club and national team jerseys with delivery in Abofour, Ghana.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

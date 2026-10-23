@@ -1,0 +1,145 @@
+import React, { useState } from 'react';
+import { Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+
+interface ResetPasswordPageProps {
+  onNavigate: (page: string) => void;
+}
+
+export const ResetPasswordPage: React.FC<ResetPasswordPageProps> = ({ onNavigate }) => {
+  const { updatePassword } = useAuth();
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
+
+    setLoading(true);
+    const res = await updatePassword(password);
+    setLoading(false);
+
+    if (res.success) {
+      setSuccess(true);
+    } else {
+      setError(res.error || 'Failed to update password. Recovery link may have expired.');
+    }
+  };
+
+  return (
+    <div className="max-w-md mx-auto px-4 py-16">
+      <div className="bg-[#0D121F] border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+        <div className="text-center space-y-3">
+          <img
+            src="/logo.png"
+            alt="Rash Hub Store"
+            className="h-14 w-auto mx-auto object-contain drop-shadow-[0_0_12px_rgba(0,230,118,0.2)] cursor-pointer"
+            onClick={() => onNavigate('home')}
+          />
+          <h1 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
+            SET NEW PASSWORD
+          </h1>
+          <p className="text-xs text-gray-400">
+            Create a strong, secure password for your Rash Hub Store account.
+          </p>
+        </div>
+
+        {success ? (
+          <div className="text-center space-y-4 py-4">
+            <div className="w-14 h-14 rounded-full bg-[#00E676]/10 border border-[#00E676] flex items-center justify-center mx-auto text-[#00E676]">
+              <CheckCircle className="w-7 h-7" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white">Password Updated!</h3>
+              <p className="text-xs text-gray-300 mt-2">
+                Your account password has been successfully updated. You can now log in with your new credentials.
+              </p>
+            </div>
+            <button
+              onClick={() => onNavigate('login')}
+              className="w-full py-3 rounded-xl bg-[#00E676] text-black font-extrabold text-xs uppercase tracking-wider hover:bg-[#00FF7F]"
+            >
+              Log In Now
+            </button>
+          </div>
+        ) : (
+          <>
+            {error && (
+              <div className="p-3.5 rounded-xl bg-red-950/60 border border-red-800 text-red-300 text-xs flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 shrink-0" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+              <div>
+                <label className="block font-bold text-gray-300 uppercase tracking-wider mb-1.5">
+                  New Password (min. 6 characters)
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3.5 top-3 w-4 h-4 text-gray-400" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    minLength={6}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full pl-10 pr-10 py-2.5 bg-[#080B11] border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00E676]"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-3 text-gray-400 hover:text-white"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-gray-300 uppercase tracking-wider mb-1.5">
+                  Confirm New Password
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3.5 top-3 w-4 h-4 text-gray-400" />
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    minLength={6}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full pl-10 pr-4 py-2.5 bg-[#080B11] border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00E676]"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3.5 rounded-xl bg-[#00E676] text-black font-extrabold uppercase tracking-wider hover:bg-[#00FF7F] transition shadow-lg shadow-[#00E676]/20 disabled:opacity-50"
+              >
+                {loading ? 'Updating Password...' : 'Save New Password'}
+              </button>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};

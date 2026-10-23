@@ -1,0 +1,1148 @@
+# RASH HUB STORE — COMPLETE FULL-STACK FOOTBALL JERSEY E-COMMERCE WEBSITE
+
+## YOUR ROLE
+
+Act as a senior full-stack software engineer, UI/UX designer, e-commerce architect, database engineer, and security specialist.
+
+Build a complete, functional, modern football jersey e-commerce website called **Rash Hub Store**. I want the actual working application and source code, not just a mockup, a landing page, or a visual demonstration.
+
+Build the frontend, Supabase backend integration, customer authentication, email verification, password recovery, customer account dashboard, product management, image uploads, shopping cart, checkout, order management, and responsive design.
+
+Inspect the existing development environment first. If a project already exists, preserve working features and improve it. If no project exists, create the complete application from scratch.
+
+Do not stop after providing a plan. Implement the application, run available checks, and fix errors.
+
+---
+
+## 1. BUSINESS INFORMATION
+
+Use the following exact business details throughout the application.
+
+- **Store name:** Rash Hub Store
+- **Business:** Football jerseys only
+- **Currency:** Ghana cedis (GH₵)
+- **Phone:** 0533916516
+- **WhatsApp:** +233533916516
+- **Delivery location:** Abofour, Ghana only
+- **Tagline:** FOOTBALL JERSEYS FOR EVERY FAN.
+- **Primary colors:** Black, dark navy, white, and vibrant electric green
+- **Target customers:** Football fans in Ghana
+
+Do not change the business name, contact details, currency, or delivery restriction.
+
+Do not advertise delivery throughout Ghana. Clearly communicate that delivery is available in Abofour only.
+
+## 2. REQUIRED TECHNOLOGY
+
+Use:
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide icons or another suitable icon library
+- Supabase PostgreSQL
+- Supabase Authentication
+- Supabase Storage
+- Supabase Row Level Security (RLS)
+- Supabase Edge Functions where trusted server-side operations are necessary
+
+Use a clean, reusable component structure and maintainable code.
+
+Supabase must be the actual backend. Do not replace it with Firebase, fake API responses, or a browser-only database.
+
+If Supabase credentials are unavailable, finish implementing the integration and provide a clear setup process. Do not claim the website is connected to a live backend until the connection has been configured and verified.
+
+Use environment variables for configuration. Never expose a Supabase service-role key or other privileged secret in browser code.
+
+---
+
+## 3. OFFICIAL LOGO AND BRANDING
+
+I have provided the official Rash Hub Store logo. It features a crown, a football, the letters RH, and the store name in white and vibrant green.
+
+Use the exact uploaded image as the official brand asset.
+
+The file should be named:
+
+`logo.png`
+
+Place it in:
+
+`public/logo.png`
+
+Use it as:
+
+- Website header logo
+- Footer logo
+- Mobile navigation logo
+- Admin login logo
+- Admin dashboard logo
+- Customer login and registration branding
+- Browser favicon
+
+Set the favicon to `/logo.png`.
+
+Preserve the original proportions with `object-contain`. Never stretch, distort, or unnecessarily crop the image.
+
+If the uploaded file is missing from the project, request that I upload it. Do not generate a replacement logo.
+
+### Visual identity
+
+Create a premium football fashion aesthetic with:
+
+- Deep black and navy backgrounds
+- White typography
+- Vibrant electric green accents
+- Bold headings
+- Clean product cards
+- Subtle shadows and glow effects
+- Smooth transitions
+- Excellent spacing
+- Professional loading and empty states
+
+Avoid clutter, excessive animation, oversized effects, and generic template styling.
+
+The website must be responsive and work properly on mobile phones, tablets, and desktop computers.
+
+---
+
+## 4. HOMEPAGE
+
+Create an impressive homepage that immediately communicates the store's football identity.
+
+### Announcement bar
+
+Add a slim announcement bar featuring messages such as:
+
+- Welcome to Rash Hub Store
+- Football jerseys for every fan
+- Discover your next match-day look
+
+Use a subtle marquee animation only if it remains accessible and performs well on mobile devices.
+
+### Header and navigation
+
+Include:
+
+- Official logo
+- Home
+- Shop Jerseys
+- New Arrivals
+- Featured Jerseys
+- Contact
+- Search
+- Shopping cart with a live item count
+- Customer account controls
+
+When signed out, display:
+
+- Login
+- Create Account
+
+When signed in, display:
+
+- My Account
+- Logout
+
+Place the account controls appropriately on desktop and in the mobile navigation menu.
+
+### Hero section
+
+Create a premium stadium-inspired hero with dramatic lighting, a dark background, and suitable football jersey imagery.
+
+Use this exact headline:
+
+**BUY QUALITY JERSEYS FOR INSTANT DELIVERY FOR THE NEW SEASON**
+
+Supporting text:
+
+“Rep your favorite club and national team with quality football jerseys. Discover your next match-day look at Rash Hub Store.”
+
+Primary button: **SHOP JERSEYS**
+
+Secondary button: **ORDER ON WHATSAPP**
+
+The Shop Jerseys button must navigate to the real product catalog.
+
+The WhatsApp button must open a conversation with +233533916516.
+
+Use legally usable images. Do not make stock imagery appear to be actual products available for sale.
+
+### Homepage sections
+
+Build:
+
+1. Featured Jerseys
+2. New Arrivals
+3. Shop by Jersey Type
+4. Why Choose Rash Hub Store?
+5. How to Order
+6. Frequently Asked Questions
+7. WhatsApp Contact Section
+
+All product sections must retrieve real published products from Supabase.
+
+If no products are published, show an attractive empty state rather than fake inventory.
+
+### Footer
+
+Include the logo, tagline, navigation, phone number, WhatsApp contact, Abofour delivery information, and links to delivery information, privacy policy, terms, and returns policy.
+
+Generate the copyright year dynamically.
+
+---
+
+## 5. SHOP AND PRODUCT CATALOG
+
+Create a complete shop page that displays published products from Supabase.
+
+Customers must be able to:
+
+- Browse all published jerseys
+- Search by jersey name
+- Search by club, country, or season
+- Filter by club or national team
+- Filter by jersey type
+- Filter by price range
+- Filter by available size
+- Sort by newest
+- Sort by price low to high
+- Sort by price high to low
+- Open individual product pages
+- Add products to their cart
+
+### Product cards
+
+Each card should display:
+
+- Jersey image
+- Jersey name
+- Club or national team
+- Season, when provided
+- Selling price in GH₵
+- Original price, if applicable
+- Genuine discount percentage, if applicable
+- Availability status
+- Product details button
+- Add to Cart button
+
+Use consistent image proportions, clean spacing, and responsive layouts.
+
+Show real stock availability. Never show out-of-stock items as available.
+
+Do not create fake production products, fake reviews, or fake sales statistics.
+
+---
+
+## 6. PRODUCT DETAIL PAGES
+
+Create a dedicated, shareable page for every jersey.
+
+Include:
+
+- Main product image
+- Image gallery with thumbnails
+- Product name
+- Club or country
+- Season
+- Jersey type
+- Fan Version or Player Version
+- Description
+- Price in GH₵
+- Original price and discount when applicable
+- Available sizes
+- Quantity selector
+- Stock availability
+- Add to Cart
+- Order on WhatsApp
+- Related products when available
+
+Customers must select an available size before adding a size-specific product to the cart.
+
+Prevent customers from ordering unavailable sizes or quantities exceeding stock.
+
+If a product is unpublished, deleted, or unavailable, display a helpful message and a link back to the shop.
+
+Use real Supabase product data throughout.
+
+---
+
+## 7. CUSTOMER REGISTRATION WITH EMAIL
+
+This is a mandatory feature.
+
+Create a fully functional customer registration page at `/signup`.
+
+Customers must be able to create accounts using their email address and password.
+
+### Registration form
+
+Include:
+
+- Full name
+- Email address
+- Password
+- Confirm password
+- Show/hide password control
+- Create Account button
+- Link to Login
+
+### Registration requirements
+
+1. Validate the full name.
+2. Validate the email format.
+3. Require a secure password that meets the configured password policy.
+4. Confirm that the password and confirmation match.
+5. Show clear validation messages beside relevant fields.
+6. Prevent duplicate registration where Supabase identifies an existing account.
+7. Create the account through Supabase Authentication.
+8. Send an email verification message when email confirmation is enabled.
+9. Display an appropriate message asking the customer to verify their email.
+10. Handle loading states, network failures, and authentication errors.
+11. Prevent repeated form submissions while a request is processing.
+
+Never store a raw password in a custom database table, localStorage, or application logs.
+
+Use Supabase's supported authentication APIs.
+
+### Registration profile
+
+After registration, securely create the customer's profile with their full name and account identifier.
+
+Use a database trigger or another reliable trusted mechanism when appropriate. Ensure the profile creation process does not allow customers to assign themselves administrative privileges.
+
+Do not expose profile-management operations that let a customer change their own role to `admin`.
+
+---
+
+## 8. CUSTOMER LOGIN WITH EMAIL AND PASSWORD
+
+Create a professional login page at `/login`.
+
+The page must include:
+
+- Email address
+- Password
+- Show/hide password button
+- Login button
+- Forgot Password link
+- Create Account link
+- Official Rash Hub Store logo
+
+### Login functionality
+
+- Authenticate with Supabase Auth.
+- Validate the email and password fields.
+- Display useful errors for invalid credentials.
+- Handle unverified email addresses when email verification is enabled.
+- Handle network and authentication failures.
+- Prevent accidental repeated submissions.
+- Use Supabase's secure session handling.
+- Preserve a valid customer session when the page refreshes.
+- Provide a safe logout function.
+
+After login, redirect customers to the page they originally intended to visit when appropriate. Otherwise, take them to `/account`.
+
+Do not send ordinary customers to the admin dashboard.
+
+Use a neutral error message when appropriate to avoid revealing whether an email address has a registered account.
+
+### Session management
+
+Use Supabase's supported session management rather than building a custom authentication system.
+
+Do not store raw passwords or sensitive authentication information in application-managed storage.
+
+Handle expired sessions and unauthorized requests gracefully.
+
+---
+
+## 9. EMAIL VERIFICATION
+
+Configure the application to support email verification through Supabase.
+
+After registration:
+
+1. Tell the customer to check their email.
+2. Provide a clear verification-pending screen.
+3. Handle the verification link and authentication callback.
+4. Show a successful verification message.
+5. Redirect the customer to the appropriate page.
+6. Handle expired or invalid verification links.
+7. Provide a way to request another verification email when supported by the configured authentication flow.
+
+Use the appropriate Supabase Auth methods and configure the allowed redirect URLs for local development and production.
+
+Do not claim an email was delivered unless the application has received an appropriate success response from the authentication service. Email delivery also depends on Supabase configuration and the configured email provider.
+
+---
+
+## 10. FORGOT PASSWORD AND PASSWORD RESET
+
+Create a functional password recovery process.
+
+### Forgot Password page
+
+Route: `/forgot-password`
+
+Include:
+
+- Email input
+- Send Reset Link button
+- Back to Login link
+
+When submitted, use Supabase Auth to request a password recovery email.
+
+Display a clear confirmation message. Use privacy-conscious messaging that does not unnecessarily reveal whether an account exists.
+
+### Password Reset page
+
+Route: `/reset-password`
+
+When the customer opens a valid recovery link:
+
+- Handle the Supabase recovery session.
+- Display a new password field.
+- Display a confirm password field.
+- Provide show/hide password controls.
+- Validate the new password.
+- Confirm both passwords match.
+- Update the password through Supabase Auth.
+- Display success or error messages.
+- Provide a link to log in after a successful reset.
+
+Handle expired recovery links and invalid sessions safely.
+
+Document the necessary Supabase site URL, redirect URL, email template, and production configuration.
+
+---
+
+## 11. CUSTOMER ACCOUNT DASHBOARD
+
+Create a protected `/account` page.
+
+Only authenticated customers may access their private account dashboard.
+
+Include:
+
+### Profile section
+
+- Customer's full name
+- Email address
+- Account information
+- Edit profile functionality
+- Save Changes button
+- Clear success and error messages
+
+Customers may update permitted profile fields, but must not be able to change their account role or administrator privileges.
+
+### Order history
+
+Display the customer's real orders from Supabase.
+
+Show:
+
+- Order reference
+- Order date
+- Items ordered
+- Jersey sizes
+- Quantities
+- Total in GH₵
+- Order status
+- View Details button
+
+Customers must only be able to access their own private order records.
+
+### Order details
+
+Display:
+
+- Order reference
+- Order date
+- Order items
+- Product names
+- Selected sizes
+- Quantities
+- Prices recorded at purchase
+- Order total
+- Delivery information
+- Current status
+
+Provide a WhatsApp contact button for order assistance.
+
+### Account navigation
+
+Include:
+
+- My Profile
+- My Orders
+- Account Settings
+- Logout
+
+Make the dashboard clean and easy to use on mobile devices.
+
+If a customer has no orders, show an attractive empty state with a Shop Jerseys button.
+
+---
+
+## 12. SECURE ADMIN AUTHENTICATION
+
+Create a protected admin dashboard at `/admin`.
+
+The administrator login may use the same Supabase Authentication system as customers, but authorization must be determined through a secure, trusted role or access policy.
+
+A customer account must never automatically become an admin account.
+
+### Security requirements
+
+- Verify administrator permissions using trusted server-side logic or secure database policies.
+- Do not rely on a hidden link or a browser-only role check.
+- Do not allow users to set their own admin role.
+- Restrict product management and order management to authorized administrators.
+- Protect all administrative database operations with RLS.
+- Provide secure logout.
+- Handle unauthorized access gracefully.
+
+Include setup instructions for securely creating the first administrator account.
+
+Do not hardcode administrator passwords in the source code.
+
+---
+
+## 13. PROFESSIONAL ADMIN DASHBOARD
+
+Build a polished dashboard with real data from Supabase.
+
+### Dashboard overview
+
+Display:
+
+- Total products
+- Published products
+- Draft products
+- Low-stock products
+- Out-of-stock products
+- Total orders
+- Pending orders
+- Completed orders
+
+Never use fabricated statistics.
+
+### Navigation
+
+Include:
+
+- Overview
+- Manage Jerseys
+- Add New Jersey
+- Manage Orders
+- Store Settings
+- View Store
+- Logout
+
+Use a responsive sidebar on desktop and a suitable mobile navigation layout.
+
+---
+
+## 14. ADVANCED JERSEY UPLOAD STUDIO
+
+The product upload system must be one of the best parts of the admin dashboard.
+
+Do not create a plain, boring upload form. Make it interactive, attractive, professional, and easy to operate.
+
+Create a multi-step workflow:
+
+**Product Details → Photos → Pricing & Stock → Live Preview → Publish**
+
+Display progress through the steps and allow the administrator to move backward to correct information.
+
+### Step 1: Product details
+
+Include:
+
+- Jersey name
+- Club or national team
+- Country
+- Season
+- Jersey type: Home, Away, Third Kit, Goalkeeper, or Other
+- Jersey version: Fan Version or Player Version
+- Short description
+- Full description
+- Optional product tags
+
+Clearly identify required fields.
+
+### Step 2: Image upload
+
+Create a large drag-and-drop area with this message:
+
+**DROP YOUR JERSEY PHOTOS HERE OR BROWSE FILES**
+
+Support:
+
+- Click-to-upload
+- Drag-and-drop
+- Multiple images per product
+- Image thumbnails
+- Reordering images
+- Main cover image selection
+- Individual image removal
+- Upload progress
+- File-type validation
+- File-size validation
+- Useful upload error messages
+- Retry functionality
+
+Upload real image files to Supabase Storage and store their storage paths or suitable URLs in the database.
+
+Do not use temporary blob URLs as permanent product image references.
+
+When editing a product, preserve existing images unless the administrator intentionally removes or replaces them.
+
+Optimize images where appropriate without noticeably degrading their quality.
+
+### Step 3: Pricing and stock
+
+Include:
+
+- Selling price in GH₵
+- Optional original price in GH₵
+- Sizes: XS, S, M, L, XL, XXL, XXXL
+- Separate stock quantity for each enabled size
+- Optional SKU
+- Featured product toggle
+- New arrival toggle
+
+Allow the administrator to enable only the sizes that are actually available.
+
+Validate prices and stock. Stock quantities must be non-negative whole numbers.
+
+Calculate discount percentages from valid prices. Do not permit an original price lower than the selling price when presenting it as a discount.
+
+### Step 4: Live preview
+
+Show the actual product as it will appear in the public store.
+
+Include:
+
+- Main image
+- Image gallery
+- Jersey name
+- Club or country
+- Price
+- Discount where applicable
+- Sizes
+- Stock status
+- Description
+- Add to Cart button
+
+Provide desktop and mobile preview options if practical.
+
+Update the preview when product details change.
+
+### Step 5: Publish
+
+Provide these buttons:
+
+- Save as Draft
+- Preview Product
+- Publish Jersey
+
+When the administrator publishes a jersey:
+
+1. Validate required fields.
+2. Validate pricing, sizes, and stock.
+3. Upload the selected images.
+4. Save product information and associated records to Supabase.
+5. Set the product status to published only when required operations succeed.
+6. Make the product available in the public catalog.
+7. Display a clear success message.
+8. Provide View Product, Add Another Jersey, and Manage Products actions.
+
+If an operation fails, show the real error where safe and preserve the administrator's form data for retrying.
+
+Do not show a false success message.
+
+Use safe database operations and avoid unnecessary duplicate records or orphaned storage files.
+
+---
+
+## 15. PRODUCT MANAGEMENT
+
+Create a product management page that allows administrators to:
+
+- Search products by name, club, or country
+- Filter by Published, Draft, and Archived
+- Filter by Low Stock and Out of Stock
+- Edit products
+- Preview products
+- Publish drafts
+- Unpublish products
+- Archive products
+- Delete products with confirmation
+- Manage product images
+- Update prices
+- Update size-specific inventory
+
+Load the real saved product data from Supabase when editing.
+
+Persist all changes so that they remain after refreshing the page.
+
+Public customers must only see published products.
+
+Do not automatically insert example products into the live database.
+
+---
+
+## 16. SHOPPING CART
+
+Build a fully functional shopping cart.
+
+Include:
+
+- Add to Cart
+- Remove item
+- Update quantity
+- Select size
+- Display item images
+- Display item names
+- Display prices
+- Calculate subtotals
+- Calculate the total in GH₵
+- Clear Cart
+- Continue Shopping
+- Proceed to Checkout
+
+Prevent customers from ordering more than the available stock.
+
+Preserve the cart during page navigation and refreshes. If the customer signs in during checkout, preserve the cart and return them to the checkout flow.
+
+Use browser storage only for non-sensitive cart persistence when appropriate. Always revalidate prices and stock against Supabase before accepting an order.
+
+Never trust a price or total submitted by the browser.
+
+---
+
+## 17. CHECKOUT
+
+Create a clear, mobile-friendly checkout page.
+
+Collect:
+
+- Customer full name
+- Email address when available
+- Phone number
+- WhatsApp number if different
+- Delivery location
+- Additional delivery instructions
+- Selected jerseys
+- Sizes
+- Quantities
+
+Allow customers to shop without logging in if guest checkout is implemented, but offer them a clear option to create an account or log in.
+
+For authenticated customers, prefill permitted profile information and associate the order with their authenticated user ID.
+
+### Delivery restriction
+
+Rash Hub Store delivers to **Abofour, Ghana only**.
+
+Communicate this clearly before order submission.
+
+Validate the delivery location and reject orders outside the supported area. Do not imply that a free-text address automatically proves that a customer is within the delivery area.
+
+### Order processing
+
+When a customer submits an order:
+
+1. Validate all required customer details.
+2. Verify current prices against the database.
+3. Verify stock and selected sizes.
+4. Calculate the total using trusted backend logic.
+5. Create a unique order reference.
+6. Save the order and order items to Supabase.
+7. Record the authenticated customer ID when applicable.
+8. Preserve a snapshot of the ordered product name, price, size, and quantity.
+9. Reduce stock safely so concurrent orders cannot oversell inventory.
+10. Display an order confirmation only after the order is successfully recorded.
+11. Provide a WhatsApp follow-up button with the order details.
+
+Use trusted server-side logic, appropriate database transactions, and idempotency where practical to reduce duplicate orders.
+
+If the order fails, show a helpful error and allow the customer to retry.
+
+Do not claim an order was paid for unless a real payment confirmation has been verified.
+
+---
+
+## 18. WHATSAPP AND TELEPHONE ORDERING
+
+Use the official business contact details:
+
+- WhatsApp: +233533916516
+- Phone: 0533916516
+
+Create properly encoded WhatsApp links using the `wa.me` format.
+
+Prefilled order messages should contain:
+
+- Rash Hub Store
+- Order reference, when available
+- Product names
+- Sizes
+- Quantities
+- Prices
+- Total amount
+- Customer's delivery location
+
+The customer must be able to review and send the message in WhatsApp.
+
+Do not claim that WhatsApp messages were sent automatically.
+
+Create telephone links using `tel:0533916516`.
+
+WhatsApp ordering must work from the homepage, product detail pages, customer account order details, and order confirmation page where appropriate.
+
+---
+
+## 19. ORDER MANAGEMENT
+
+Create a working admin order management system.
+
+Administrators must be able to:
+
+- View all orders
+- Search by order reference
+- Search by customer
+- Filter by status
+- View order details
+- View ordered products and sizes
+- View quantities and totals
+- View delivery details
+- Contact customers
+- Update order statuses
+- Add fulfillment notes
+
+Use statuses such as:
+
+- Pending
+- Confirmed
+- Processing
+- Ready for Delivery
+- Completed
+- Cancelled
+
+Only authorized administrators may access all customer orders or change order statuses.
+
+Customers may only view their own orders.
+
+Record order totals and product prices securely. Do not label orders as paid just because an order was placed through WhatsApp.
+
+---
+
+## 20. CUSTOMER PROFILE AND DATABASE DESIGN
+
+Inspect the existing Supabase database before creating migrations.
+
+Reuse compatible tables and avoid destructive schema changes.
+
+If needed, create documented migrations for these tables:
+
+### `profiles`
+
+Include fields such as:
+
+- User ID linked to Supabase Auth
+- Full name
+- Optional phone number
+- Created timestamp
+- Updated timestamp
+
+Store administrative authorization separately or protect it with an appropriate trusted role mechanism. Do not allow customers to modify their own role.
+
+### `products`
+
+Include:
+
+- Product ID
+- Product name
+- Slug
+- Club or country
+- Season
+- Jersey type
+- Version
+- Short description
+- Full description
+- Selling price
+- Optional original price
+- Featured status
+- New arrival status
+- Publication status
+- Created timestamp
+- Updated timestamp
+
+### `product_images`
+
+Include:
+
+- Image ID
+- Product ID
+- Supabase Storage path
+- Image display order
+- Cover-image indicator
+- Created timestamp
+
+### `product_sizes`
+
+Include:
+
+- Size ID
+- Product ID
+- Size label
+- Stock quantity
+- Optional SKU
+- Created timestamp
+- Updated timestamp
+
+### `orders`
+
+Include:
+
+- Order ID
+- Unique order reference
+- Nullable authenticated customer ID for supported guest orders
+- Customer name
+- Customer email when available
+- Customer phone
+- Delivery location
+- Delivery instructions
+- Trusted calculated total
+- Order status
+- Created timestamp
+- Updated timestamp
+
+### `order_items`
+
+Include:
+
+- Order item ID
+- Order ID
+- Product ID when available
+- Product name snapshot
+- Selected size
+- Quantity
+- Unit price snapshot
+- Line total
+
+Use suitable foreign keys, indexes, constraints, and timestamps.
+
+Keep the schema compatible with the actual application code. Document all migrations.
+
+---
+
+## 21. ROW LEVEL SECURITY AND BACKEND SECURITY
+
+Security is mandatory.
+
+Enable and test Row Level Security for relevant tables.
+
+Policies must ensure:
+
+- Public visitors can read only published products and their displayable product information.
+- Only authorized administrators can create, edit, publish, archive, or delete products.
+- Customers can read their own profile.
+- Customers can update only permitted profile fields.
+- Customers cannot grant themselves administrative privileges.
+- Customers can access only their own private orders and order items.
+- Customers cannot alter trusted order totals, prices, or stock quantities.
+- Administrative order-management actions require authorization.
+- Storage uploads, updates, and deletions follow appropriate permissions.
+- Unauthenticated visitors cannot read private customer information.
+
+For guest checkout, create orders through a trusted endpoint with strict validation and rate limiting where practical.
+
+Never trust client-provided user IDs, prices, stock values, role assignments, or totals.
+
+Do not expose privileged Supabase credentials in the frontend.
+
+Use an Edge Function or another appropriate trusted server-side mechanism when guest order creation requires privileges beyond the public client's permissions.
+
+Test the policies, not merely the UI.
+
+---
+
+## 22. CUSTOMER EXPERIENCE AND ACCESSIBILITY
+
+Create a consistent experience across all pages.
+
+Include:
+
+- Loading indicators
+- Loading skeletons
+- Helpful empty states
+- Clear success notifications
+- Clear error messages
+- Form validation
+- Disabled states during submissions
+- Confirmation dialogs for destructive actions
+- Keyboard accessibility
+- Visible focus indicators
+- Readable contrast
+- Responsive navigation
+- Accessible labels for form fields and controls
+
+Make sure buttons perform their advertised actions.
+
+Do not leave fake links, placeholder actions, or buttons that do nothing.
+
+---
+
+## 23. SEO AND PERFORMANCE
+
+Implement:
+
+- Suitable page titles
+- Meta descriptions
+- Social sharing metadata
+- Product-specific page metadata
+- Sensible heading hierarchy
+- Responsive images
+- Lazy loading
+- Efficient data fetching
+- Clean product URLs
+- A custom not-found page
+- Favicon using the supplied logo
+
+Optimize the website for mobile phones and moderate internet connections.
+
+Avoid unnecessary libraries, oversized assets, and expensive repeated database requests.
+
+---
+
+## 24. ENVIRONMENT CONFIGURATION
+
+Provide an `.env.example` file containing the public frontend configuration required by the implementation, for example:
+
+`VITE_SUPABASE_URL=`
+
+`VITE_SUPABASE_ANON_KEY=`
+
+Use the appropriate public/publishable key supported by the configured Supabase project.
+
+If Edge Functions or other trusted backend services require secrets, configure those secrets through the appropriate secure environment settings.
+
+Do not place a service-role key in any `VITE_` variable or browser bundle.
+
+Explain how to:
+
+1. Connect the existing Supabase project.
+2. Configure email authentication.
+3. Configure the site URL and allowed redirect URLs.
+4. Configure email verification.
+5. Configure password recovery.
+6. Apply database migrations.
+7. Create the Storage bucket and policies.
+8. Securely assign the first administrator.
+9. Run the application locally.
+10. Deploy the application.
+
+If an email provider or Supabase setting requires manual setup, identify it clearly.
+
+---
+
+## 25. FINAL TESTING REQUIREMENTS
+
+Run available checks and fix errors before finishing.
+
+Test these workflows:
+
+### Customer authentication
+
+1. Register a new account with name, email, and password.
+2. Validate incorrect registration data.
+3. Verify the email if confirmation is enabled.
+4. Log in using email and password.
+5. Refresh the page and verify the session behaves correctly.
+6. Log out and verify access is removed.
+7. Request a password reset.
+8. Complete the password reset using a valid recovery link.
+9. Update the customer profile.
+10. Confirm a customer cannot change their role to administrator.
+
+### Product management
+
+1. Sign in as an authorized administrator.
+2. Upload a jersey with multiple images.
+3. Set prices and size-specific stock.
+4. Save it as a draft.
+5. Reopen and edit the draft.
+6. Publish it.
+7. Confirm the published product appears in the shop.
+8. Refresh the site and confirm the changes persist.
+9. Test upload failures and retry behavior.
+10. Confirm an ordinary customer cannot manage products.
+
+### Shopping and orders
+
+1. Browse and search products.
+2. Filter and sort products.
+3. Add a jersey and size to the cart.
+4. Update quantities.
+5. Confirm totals are correct.
+6. Attempt to order an unavailable size.
+7. Complete checkout with a supported Abofour delivery location.
+8. Confirm order details are stored in Supabase.
+9. Confirm the order appears in the customer's account.
+10. Confirm the customer cannot view another customer's order.
+11. Confirm an administrator can manage the order.
+12. Test WhatsApp links and telephone links.
+
+### Final checks
+
+- Build succeeds.
+- No critical console errors remain.
+- Responsive layouts work.
+- Supabase policies protect private data.
+- No secrets are exposed.
+- No fake success messages are displayed.
+- No production demo products or fake order records are inserted.
+
+If any test cannot be performed because credentials, email configuration, or deployment access are missing, state the exact limitation honestly.
+
+---
+
+## 26. REQUIRED FINAL DELIVERABLES
+
+Deliver the complete working source code, including:
+
+- All application files
+- Homepage
+- Shop page
+- Product detail pages
+- Login and registration pages
+- Email verification flow
+- Forgot and reset password pages
+- Customer account dashboard
+- Shopping cart
+- Checkout
+- Admin authentication
+- Admin dashboard
+- Product upload studio
+- Product management
+- Order management
+- Supabase integration
+- Database migrations
+- RLS policies
+- Storage configuration
+- Edge Functions where required
+- `.env.example`
+- Setup documentation
+- Deployment instructions
+- Tests for critical workflows where practical
+
+Do not leave essential functionality as TODO comments.
+
+When finished, provide a concise implementation report stating what works, what needs configuration, how to run the app, how to create the first administrator, and how to deploy it.
+
+**Start building Rash Hub Store now. Use my supplied logo, implement customer email registration and login, connect the real Supabase backend, complete the product upload and publishing system, and deliver the actual application rather than a mockup.**
