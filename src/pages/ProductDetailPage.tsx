@@ -147,36 +147,71 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
     .slice(0, 4);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 space-y-12">
-      {/* Breadcrumb & Navigation */}
-      <div className="flex items-center justify-between">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-1.5 text-xs font-semibold text-gray-400 hover:text-white transition"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to Catalog</span>
-        </button>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 space-y-8">
+      {/* Semantic Breadcrumbs & Navigation */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-gray-800/80">
+        <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-gray-400">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onBack();
+            }}
+            className="hover:text-white transition"
+          >
+            Home
+          </a>
+          <ChevronRight className="w-3.5 h-3.5 text-gray-600" />
+          <a
+            href="/shop"
+            onClick={(e) => {
+              e.preventDefault();
+              onBack();
+            }}
+            className="hover:text-white transition"
+          >
+            Shop Jerseys
+          </a>
+          <ChevronRight className="w-3.5 h-3.5 text-gray-600" />
+          <span className="text-[#00E676] font-semibold truncate max-w-[200px] sm:max-w-xs" aria-current="page">
+            {product.name}
+          </span>
+        </nav>
 
-        <button
-          onClick={handleShare}
-          className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#00E676] transition p-2 rounded-lg hover:bg-white/5"
-          title="Share Jersey"
-        >
-          <Share2 className="w-4 h-4" />
-          <span className="hidden sm:inline">Share</span>
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onBack}
+            className="flex items-center gap-1.5 text-xs font-semibold text-gray-400 hover:text-white transition"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Catalog</span>
+          </button>
+
+          <button
+            onClick={handleShare}
+            className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#00E676] transition p-1.5 rounded-lg hover:bg-white/5"
+            title="Share Jersey"
+          >
+            <Share2 className="w-4 h-4" />
+            <span className="hidden sm:inline">Share</span>
+          </button>
+        </div>
       </div>
 
       {/* Main Product Showcase Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         {/* Left Column: Image Gallery */}
         <div className="lg:col-span-6 space-y-4">
-          {/* Main Visual Box */}
+          {/* Main Visual Box (LCP Element) */}
           <div className="relative aspect-[4/4.5] w-full bg-[#070A11] border border-gray-800 rounded-3xl p-6 flex items-center justify-center overflow-hidden shadow-2xl group">
             <img
               src={currentImage}
-              alt={product.name}
+              alt={`${product.name} - ${product.version} ${product.jersey_type} football kit`}
+              width="600"
+              height="675"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
             />
 
@@ -227,7 +262,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({
                 >
                   <img
                     src={img.url}
-                    alt={`${product.name} thumbnail ${idx + 1}`}
+                    alt={`${product.name} thumbnail view ${idx + 1}`}
+                    width="80"
+                    height="96"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain"
                   />
                 </button>

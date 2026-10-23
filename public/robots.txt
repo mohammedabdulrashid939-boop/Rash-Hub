@@ -1,0 +1,23 @@
+# Robots.txt for Rash Hubs (https://rash-hubs.pages.dev)
+# Search engine crawl directives
+
+User-agent: *
+Allow: /
+Allow: /shop
+Allow: /product/
+Allow: /contact
+Allow: /logo.png
+Allow: /assets/
+
+# Disallow private user accounts, checkout, and admin routes from indexing
+Disallow: /admin
+Disallow: /account
+Disallow: /checkout
+Disallow: /order-confirmation
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /reset-password
+
+# Sitemap location
+Sitemap: https://rash-hubs.pages.dev/sitemap.xml

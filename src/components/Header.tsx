@@ -43,11 +43,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onSearc
   };
 
   const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'shop', label: 'Shop Jerseys' },
-    { id: 'new-arrivals', label: 'New Arrivals', badge: 'Hot' },
-    { id: 'featured', label: 'Featured Jerseys' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: 'Home', href: '/' },
+    { id: 'shop', label: 'Shop Jerseys', href: '/shop' },
+    { id: 'new-arrivals', label: 'New Arrivals', badge: 'Hot', href: '/shop' },
+    { id: 'featured', label: 'Featured Jerseys', href: '/shop' },
+    { id: 'contact', label: 'Contact', href: '/contact' },
   ];
 
   return (
@@ -89,20 +89,33 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onSearc
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Official Brand Logo */}
-          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => onNavigate('home')}>
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('home');
+            }}
+            className="flex items-center space-x-3 cursor-pointer"
+            aria-label="Rash Hubs Homepage"
+          >
             <img
               src="/logo.png"
-              alt="Rash Hub Store Official Logo"
+              alt="Rash Hubs Official Logo"
+              width="170"
+              height="56"
+              fetchPriority="high"
               className="h-14 w-auto max-w-[170px] object-contain hover:scale-[1.02] transition-transform drop-shadow-[0_0_12px_rgba(0,230,118,0.2)]"
             />
-          </div>
+          </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
             {navLinks.map((link) => (
-              <button
+              <a
                 key={link.id}
-                onClick={() => {
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
                   if (link.id === 'new-arrivals') {
                     onNavigate('shop', { filter: 'new_arrivals' });
                   } else if (link.id === 'featured') {
@@ -125,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onSearc
                     {link.badge}
                   </span>
                 )}
-              </button>
+              </a>
             ))}
           </nav>
 
@@ -253,11 +266,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onSearc
           </div>
 
           {/* Mobile Navigation Links */}
-          <div className="space-y-1">
+          <nav className="space-y-1" aria-label="Mobile Navigation">
             {navLinks.map((link) => (
-              <button
+              <a
                 key={link.id}
-                onClick={() => {
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
                   setMobileMenuOpen(false);
                   if (link.id === 'new-arrivals') {
                     onNavigate('shop', { filter: 'new_arrivals' });
@@ -275,9 +290,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onSearc
               >
                 <span>{link.label}</span>
                 <ChevronRight className="w-4 h-4 text-gray-600" />
-              </button>
+              </a>
             ))}
-          </div>
+          </nav>
 
           {/* Account Controls Mobile */}
           <div className="pt-3 border-t border-gray-800 space-y-2">

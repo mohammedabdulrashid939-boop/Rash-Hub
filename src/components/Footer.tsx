@@ -101,7 +101,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <div className="lg:col-span-2 space-y-4">
               <img
                 src="/logo.png"
-                alt="Rash Hub Store"
+                alt="Rash Hubs — Football Jerseys Store"
+                width="180"
+                height="64"
+                loading="lazy"
+                decoding="async"
                 className="h-16 w-auto object-contain drop-shadow-[0_0_12px_rgba(0,230,118,0.2)]"
               />
               <p className="text-xs text-gray-300 max-w-sm font-medium">
@@ -120,51 +124,71 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
 
             {/* Quick Links */}
-            <div className="space-y-3">
+            <nav className="space-y-3" aria-label="Footer Catalog Navigation">
               <h4 className="text-xs font-bold text-white uppercase tracking-wider">Catalog</h4>
               <ul className="space-y-2 text-xs">
                 <li>
-                  <button
-                    onClick={() => onNavigate('shop')}
+                  <a
+                    href="/shop"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('shop');
+                    }}
                     className="hover:text-[#00E676] transition"
                   >
                     All Jerseys
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onNavigate('shop', { filter: 'new_arrivals' })}
+                  <a
+                    href="/shop"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('shop', { filter: 'new_arrivals' });
+                    }}
                     className="hover:text-[#00E676] transition"
                   >
                     New Arrivals
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onNavigate('shop', { filter: 'featured' })}
+                  <a
+                    href="/shop"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('shop', { filter: 'featured' });
+                    }}
                     className="hover:text-[#00E676] transition"
                   >
                     Featured Match Kits
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onNavigate('shop', { type: 'Player Version' })}
+                  <a
+                    href="/shop"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('shop', { type: 'Player Version' });
+                    }}
                     className="hover:text-[#00E676] transition"
                   >
                     Player Versions
-                  </button>
+                  </a>
                 </li>
                 <li>
-                  <button
-                    onClick={() => onNavigate('shop', { type: 'Fan Version' })}
+                  <a
+                    href="/shop"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('shop', { type: 'Fan Version' });
+                    }}
                     className="hover:text-[#00E676] transition"
                   >
                     Fan Versions
-                  </button>
+                  </a>
                 </li>
               </ul>
-            </div>
+            </nav>
 
             {/* Customer Care */}
             <div className="space-y-3">
@@ -193,6 +217,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   >
                     Terms of Service
                   </button>
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate('contact');
+                    }}
+                    className="hover:text-[#00E676] transition"
+                  >
+                    Contact & Abofour Support
+                  </a>
                 </li>
                 <li>
                   <button

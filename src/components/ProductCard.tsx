@@ -70,7 +70,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails
   return (
     <div className="group relative bg-[#0D121F] border border-gray-800 rounded-2xl overflow-hidden hover:border-[#00E676]/50 transition-all duration-300 flex flex-col justify-between shadow-lg hover:shadow-[0_10px_30px_rgba(0,230,118,0.08)]">
       {/* Top Media Container */}
-      <div className="relative aspect-[4/4.5] w-full bg-[#070A11] p-4 flex items-center justify-center overflow-hidden cursor-pointer" onClick={() => onViewDetails(product.slug)}>
+      <a
+        href={`/product/${product.slug}`}
+        onClick={(e) => {
+          e.preventDefault();
+          onViewDetails(product.slug);
+        }}
+        className="relative aspect-[4/4.5] w-full bg-[#070A11] p-4 flex items-center justify-center overflow-hidden cursor-pointer block"
+        aria-label={`View ${product.name}`}
+      >
         {/* Badges Overlay */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
           {hasDiscount && (
@@ -110,23 +118,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails
         {/* Jersey Image */}
         <img
           src={coverImage}
-          alt={product.name}
-          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+          alt={`${product.name} - ${product.version} ${product.jersey_type} football kit`}
+          width="400"
+          height="450"
           loading="lazy"
+          decoding="async"
+          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
         />
 
         {/* Quick View Button on Hover */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onViewDetails(product.slug);
-          }}
-          className="absolute bottom-3 right-3 p-2 rounded-xl bg-black/80 hover:bg-[#00E676] text-gray-300 hover:text-black border border-gray-700 hover:border-[#00E676] opacity-0 group-hover:opacity-100 transition-all duration-200 z-10"
+        <span
+          className="absolute bottom-3 right-3 p-2 rounded-xl bg-black/80 hover:bg-[#00E676] text-gray-300 hover:text-black border border-gray-700 hover:border-[#00E676] opacity-0 group-hover:opacity-100 transition-all duration-200 z-10 flex items-center justify-center"
           title="View Details"
         >
           <Eye className="w-4 h-4" />
-        </button>
-      </div>
+        </span>
+      </a>
 
       {/* Information Container */}
       <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
@@ -138,12 +145,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onViewDetails
           </div>
 
           {/* Product Name */}
-          <h3
-            onClick={() => onViewDetails(product.slug)}
-            className="text-sm sm:text-base font-bold text-white mt-1 hover:text-[#00E676] transition-colors cursor-pointer line-clamp-1"
-            title={product.name}
-          >
-            {product.name}
+          <h3 className="text-sm sm:text-base font-bold text-white mt-1 hover:text-[#00E676] transition-colors line-clamp-1">
+            <a
+              href={`/product/${product.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onViewDetails(product.slug);
+              }}
+              title={product.name}
+            >
+              {product.name}
+            </a>
           </h3>
 
           {/* Jersey Type Badge */}

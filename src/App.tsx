@@ -18,6 +18,7 @@ import { AdminDashboard } from './pages/AdminDashboard';
 import { ContactPage } from './pages/ContactPage';
 import { Product, Order, ProductFilterState } from './types';
 import { fetchPublishedProducts, fetchProductBySlug } from './lib/supabase';
+import { SEOHead } from './components/SEOHead';
 
 function MainApp() {
   const { user } = useAuth();
@@ -240,6 +241,9 @@ function MainApp() {
 
   return (
     <div className="min-h-screen bg-[#080B11] text-white flex flex-col font-sans antialiased selection:bg-[#00E676] selection:text-black">
+      {/* Dynamic SEO Head Manager */}
+      <SEOHead currentPage={currentPage} product={activeProduct} searchQuery={pageParams.q} />
+
       {/* Global Navigation Header */}
       <Header
         currentPage={currentPage}

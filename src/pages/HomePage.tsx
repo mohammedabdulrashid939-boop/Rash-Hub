@@ -92,13 +92,17 @@ export const HomePage: React.FC<HomePageProps> = ({
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                <button
-                  onClick={() => onNavigate('shop')}
+                <a
+                  href="/shop"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('shop');
+                  }}
                   className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#00E676] text-black font-black text-sm uppercase tracking-wider hover:bg-[#00FF7F] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_10px_30px_rgba(0,230,118,0.3)] flex items-center justify-center gap-2"
                 >
                   <ShoppingBag className="w-5 h-5" />
                   <span>SHOP JERSEYS</span>
-                </button>
+                </a>
 
                 <a
                   href={getWhatsAppLink(
@@ -139,7 +143,12 @@ export const HomePage: React.FC<HomePageProps> = ({
                 {/* Official Logo Brand Asset */}
                 <img
                   src="/logo.png"
-                  alt="Rash Hub Store Official Jersey Collection"
+                  alt="Rash Hubs Official Football Jerseys Collection"
+                  width="288"
+                  height="288"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-64 sm:w-72 h-auto object-contain drop-shadow-[0_0_25px_rgba(0,230,118,0.35)] relative z-10 group-hover:scale-105 transition-transform duration-500"
                 />
 
